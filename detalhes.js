@@ -28,8 +28,7 @@ if(sessionStorage.getItem('logado')) {
 );
 } else {
     document.body.innerHTML = "<h1>Você precisa estar logado</h1>"
-}
-
+} 
 
 const achaCookie = ( chave ) => {
     const lista = document.cookie.split("; ");
@@ -39,10 +38,3 @@ const achaCookie = ( chave ) => {
 
     return par.split("=")[1]
 }
-
-console.log('altura:', achaCookie('altura'))
-
-const dadosSessionStorage = sessionStorage.getItem('dados');
-const obj = JSON.parse(dadosSessionStorage);
-
-console.log('número de jogos:', obj.nJogos);

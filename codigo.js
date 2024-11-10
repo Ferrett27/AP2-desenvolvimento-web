@@ -6,7 +6,13 @@ const pega_json = async (caminho) => {
     return dados;
 }
 
+document.getElementById('home').style.visibility = 'hidden';
+
 const container = document.getElementById("container");
+
+const zeracard = () => {
+    container.innerHTML= ""
+}
 
 const manipulaClick = (e) => {
     const id = e.currentTarget.dataset.id;
@@ -27,7 +33,6 @@ const montaCard = (atleta) => {
     const nome = document.createElement("h1");
     const imagem = document.createElement("img");
     const descri = document.createElement("p");
-    const link = document.createElement("a");
 
     nome.innerHTML = atleta.nome;
     nome.style.fontFamily = "sains-serif";
@@ -39,10 +44,6 @@ const montaCard = (atleta) => {
     descri.innerHTML = atleta.detalhes;
     cartao.appendChild(descri);
 
-    /*link.innerText = "Saiba mais...";
-    link.href = `detalhes.html?id=${atleta.id}`;
-    cartao.appendChild(link);*/
-
     cartao.onclick = manipulaClick;
 
     cartao.dataset.id = atleta.id;
@@ -52,30 +53,72 @@ const montaCard = (atleta) => {
     return cartao;
 };
 
-pega_json(`${url}masculino`).then( 
-    (r) => {
-        r.forEach(
-            (ele) => container.appendChild(montaCard(ele))
-        )
-    }
-)
+const manipulaJogadoresMasc = () => {
+    if(sessionStorage.getItem('logado')) {
+        zeracard()
+        pega_json(`${url}masculino`).then( 
+        (r) => {
+            r.forEach((ele) => container.appendChild(montaCard(ele))
+            )
+        }
+    )
+    } else {
+        alert('Você precisa estar logado')
+    } 
+}
 
-console.log("isso imprime primeiro");
-    
+const manipulaJogadoresFemi = () => {
+    if(sessionStorage.getItem('logado')) {
+        zeracard()
+        pega_json(`${url}feminino`).then( 
+        (r) => {
+            r.forEach((ele) => container.appendChild(montaCard(ele))
+            )
+        }
+    )
+    } else {
+        alert('Você precisa estar logado')
+    } 
+}
 
-/*dados.forEach(
-    (ele) => container.appendChild(montaCard(ele))    
-)*/
+const manipulaJogadoresTodos = () => {
+    if(sessionStorage.getItem('logado')) {
+        zeracard()
+        pega_json(`${url}all`).then( 
+        (r) => {
+            r.forEach((ele) => container.appendChild(montaCard(ele))
+            )
+        }
+    )
+    } else {
+        alert('Você precisa estar logado')
+    } 
+}
 
 const manipulaBotao = () => {
     const texto = document.getElementById('senha').value;
-    if (hex_md5(texto) === "5029cc9dd0295ded2f500084635c18c1"){
+    if (hex_md5(texto) === 'a54f6754415236f9bae4e0add5446d74'){
         sessionStorage.setItem('logado', 'sim');
+        document.getElementById('tela-login').style.visibility = 'hidden';
+        document.getElementById('home').style.visibility = "visible";
+         
     } else {
         alert('Você errou a senha!!!')
     }
 }
 
+
+
+
 document.getElementById('botao').onclick = manipulaBotao;
 
-document.getElementById('logout').onclick = () => sessionStorage.removeItem('logado')
+document.getElementById('masculino').onclick = manipulaJogadoresMasc;
+document.getElementById('feminino').onclick = manipulaJogadoresFemi;
+document.getElementById('todes').onclick = manipulaJogadoresTodos;
+
+document.getElementById('logout').onclick = () => {
+    sessionStorage.removeItem('logado');
+    zeracard()
+    document.getElementById('tela-login').style.visibility = "visible";
+    document.getElementById('home').style.visibility = 'hidden';
+}
