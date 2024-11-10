@@ -97,7 +97,7 @@ const manipulaJogadoresTodos = () => {
 
 const manipulaBotao = () => {
     const texto = document.getElementById('senha').value;
-    if (hex_md5(texto) === 'a54f6754415236f9bae4e0add5446d74'){
+    if (hex_sha256(texto) === 'ee9a289648199d7f8327e2f519f0d8f12471054935c259559a0cf0091fb79da8'){
         sessionStorage.setItem('logado', 'sim');
         document.getElementById('tela-login').style.visibility = 'hidden';
         document.getElementById('home').style.visibility = "visible";
@@ -114,7 +114,7 @@ document.getElementById('botao').onclick = manipulaBotao;
 
 document.getElementById('masculino').onclick = manipulaJogadoresMasc;
 document.getElementById('feminino').onclick = manipulaJogadoresFemi;
-document.getElementById('todes').onclick = manipulaJogadoresTodos;
+document.getElementById('todos').onclick = manipulaJogadoresTodos;
 
 document.getElementById('logout').onclick = () => {
     sessionStorage.removeItem('logado');

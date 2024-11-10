@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="escudo.png" sizes="16x16">
     <link href="estilo.css" rel="stylesheet">
     <script src="feminino.js"></script>
-    <script src="md5-min.js"></script>
+    <script src="sha256-min.js"></script>
     <script src="codigo.js" defer></script>
 </head>
 <body>
@@ -16,11 +16,18 @@
     <button id="botao">tentar</button>
     </div>
     <div id="home">
-    <button id="masculino">Masculino</button>
-    <button id="feminino">Feminino</button>
-    <button id="todes">Todos</button>
-    <button id="logout">logout</button>
-    <div id="container"></div>
+        <div id="grid-topo">
+            <h1 id="home-topo">Elenco Botafogo 2024/1</h1>
+            <button id="logout">logout</button>
+        </div>
+        <div id="grid-opcoes">
+            <button id="masculino">Masculino</button>
+            <button id="feminino">Feminino</button>
+            <button id="todos">Todos</button>
+        </div>
+        <br>
+        <br>
+        <div id="container"></div>
     </div>
 </body>
 </html>
