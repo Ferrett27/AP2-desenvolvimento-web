@@ -9,10 +9,22 @@ const pega_json = async (caminho) => {
 document.getElementById('home').style.visibility = 'hidden';
 
 const container = document.getElementById("container");
+const pesquisaInput = document.querySelector(".input_texto")
 
-const zeracard = () => {
-    container.innerHTML= ""
-}
+pesquisaInput.addEventListener('input',(e) =>{
+    const pesquisaValor = e.target.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    zeracard();
+    pega_json(`${url}all`).then( 
+        (r) => {
+            r.forEach((ele) =>{ if(ele.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(pesquisaValor)) {
+                container.appendChild(montaCard(ele))}
+                }
+            )
+            }
+        )
+})
+
+
 
 const manipulaClick = (e) => {
     const id = e.currentTarget.dataset.id;
@@ -103,11 +115,13 @@ const manipulaBotao = () => {
         document.getElementById('home').style.visibility = "visible";
          
     } else {
-        alert('Você errou a senha!!!')
+        alert('Senha incorreta')
     }
 }
 
-
+const zeracard = () => {
+    container.innerHTML= ""
+}
 
 
 document.getElementById('botao').onclick = manipulaBotao;
@@ -121,4 +135,9 @@ document.getElementById('logout').onclick = () => {
     zeracard()
     document.getElementById('tela-login').style.visibility = "visible";
     document.getElementById('home').style.visibility = 'hidden';
+}
+
+document.getElementById("limpar-caixa").onclick = () => {
+    document.getElementById('caixa-texto').value = '';
+    zeracard();
 }

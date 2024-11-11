@@ -27,11 +27,11 @@
     grid-template-areas: 
     "a b"
     ;
+    margin-bottom: 2%;
 }
 
 #home-topo{
     grid-area: a;
-    height: 5%;
 }
 
 
@@ -39,11 +39,11 @@
     grid-area: b;
     color: white;
     background-color: black;
-    width: 30%;
+    width: 40%;
     height: 50%;
     position: relative;
     align-self: center;
-    margin-left: 70%;
+    margin-left: 60%;
 }
 
 #grid-opcoes{
@@ -51,13 +51,14 @@
     grid-template-areas: 
     "c d e"
     ;
+    margin-bottom: 2%;
 }
 
 #masculino{
     position: relative;
     grid-area: c;
     width: 50%;
-    height: 150%;
+    height: 200%;
     color: white;
     background-color: black;
     align-self: center;
@@ -68,7 +69,7 @@
     position: relative;
     grid-area: d;
     width: 50%;
-    height: 150%;
+    height: 200%;
     color: white;
     background-color: black;
     align-self: center;
@@ -79,7 +80,7 @@
     position: relative;
     grid-area: e;
     width: 50%;
-    height: 150%;
+    height: 200%;
     color: white;
     background-color: black;
     align-self: center;
