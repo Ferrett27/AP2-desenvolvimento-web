@@ -1,29 +1,28 @@
 const url = "https://botafogo-atletas.mange.li/2024-1/";
 
+let jogadores = []
+
 const pega_json = async (caminho) => {
     const resposta = await fetch(caminho);
-    const dados = await resposta.json();
+    const dados = await resposta.json(); 
     return dados;
 }
 
 document.getElementById('home').style.visibility = 'hidden';
 
 const container = document.getElementById("container");
-const pesquisaInput = document.querySelector(".input_texto")
+const pesquisaInput = document.getElementById('caixa-texto')
 
-pesquisaInput.addEventListener('input',(e) =>{
-    const pesquisaValor = e.target.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+pesquisaInput.addEventListener("input", (e) => {
+    const valorInput = e.target.value.toLowerCase();
+    const atletasfiltrados = jogadores.filter((atleta) => {
+        return (
+            atleta.nome.toLowerCase().includes(valorInput)
+        );
+    });
     zeracard();
-    pega_json(`${url}all`).then( 
-        (r) => {
-            r.forEach((ele) =>{ if(ele.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(pesquisaValor)) {
-                container.appendChild(montaCard(ele))}
-                }
-            )
-            }
-        )
-})
-
+    atletasfiltrados.forEach((ele) => container.appendChild(montaCard(ele)));
+});
 
 
 const manipulaClick = (e) => {
@@ -45,6 +44,7 @@ const montaCard = (atleta) => {
     const nome = document.createElement("h1");
     const imagem = document.createElement("img");
     const descri = document.createElement("p");
+    
 
     nome.innerHTML = atleta.nome;
     nome.style.fontFamily = "sains-serif";
@@ -58,21 +58,25 @@ const montaCard = (atleta) => {
 
     cartao.onclick = manipulaClick;
 
+    cartao.dataset.nome = atleta.nome;
     cartao.dataset.id = atleta.id;
     cartao.dataset.nJogos = atleta.n_jogos;
     cartao.dataset.altura = atleta.altura;
     
-    return cartao;
+    return cartao
 };
 
 const manipulaJogadoresMasc = () => {
     if(sessionStorage.getItem('logado')) {
+        const m = "masculino"
         zeracard()
-        pega_json(`${url}masculino`).then( 
+        jogadores = jogadoresAtual(m)
+        console.log(jogadores)
+        pega_json(`${url}${m}`).then( 
         (r) => {
-            r.forEach((ele) => container.appendChild(montaCard(ele))
+            r.forEach((ele) => container.appendChild(montaCard(ele)) 
             )
-        }
+        } 
     )
     } else {
         alert('Você precisa estar logado')
@@ -81,8 +85,11 @@ const manipulaJogadoresMasc = () => {
 
 const manipulaJogadoresFemi = () => {
     if(sessionStorage.getItem('logado')) {
+        const f = "feminino"
         zeracard()
-        pega_json(`${url}feminino`).then( 
+        jogadores = jogadoresAtual(f)
+        console.log(jogadores)
+        pega_json(`${url}${f}`).then( 
         (r) => {
             r.forEach((ele) => container.appendChild(montaCard(ele))
             )
@@ -95,8 +102,11 @@ const manipulaJogadoresFemi = () => {
 
 const manipulaJogadoresTodos = () => {
     if(sessionStorage.getItem('logado')) {
+        const t = "all"
         zeracard()
-        pega_json(`${url}all`).then( 
+        jogadores = jogadoresAtual(t)
+        console.log(jogadores)
+        pega_json(`${url}${t}`).then( 
         (r) => {
             r.forEach((ele) => container.appendChild(montaCard(ele))
             )
@@ -105,6 +115,12 @@ const manipulaJogadoresTodos = () => {
     } else {
         alert('Você precisa estar logado')
     } 
+}
+
+const jogadoresAtual = (e) => {
+    jogadores = []
+    pega_json(`${url}${e}`).then((r) =>{r.forEach((ele) => jogadores.push(ele))})
+    return jogadores
 }
 
 const manipulaBotao = () => {
@@ -123,7 +139,6 @@ const zeracard = () => {
     container.innerHTML= ""
 }
 
-
 document.getElementById('botao').onclick = manipulaBotao;
 
 document.getElementById('masculino').onclick = manipulaJogadoresMasc;
@@ -135,9 +150,4 @@ document.getElementById('logout').onclick = () => {
     zeracard()
     document.getElementById('tela-login').style.visibility = "visible";
     document.getElementById('home').style.visibility = 'hidden';
-}
-
-document.getElementById("limpar-caixa").onclick = () => {
-    document.getElementById('caixa-texto').value = '';
-    zeracard();
 }
