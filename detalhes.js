@@ -12,17 +12,50 @@ const montaPagina = (dados) => {
     const body = document.body;
     body.innerHTML = ''
 
+    const article = document.createElement("article");
+    article.id = "article-descricao"
+    body.append(article)
+    
+    const divdetalhes = document.createElement("div");
+    divdetalhes.id = "detalhes-div"
+    document.getElementById("article-descricao").appendChild(divdetalhes)
+
+    const divinformacoes = document.createElement("div");
+    divinformacoes.id = "informacoes-div"
+    document.getElementById("article-descricao").appendChild(divinformacoes)
+
     const nome = document.createElement("h1");
     nome.innerHTML = dados.nome
-    body.appendChild(nome);
+    document.getElementById("detalhes-div").appendChild(nome)
 
     const imagem = document.createElement("img");
     imagem.src = dados.imagem
-    body.appendChild(imagem);
+    document.getElementById("detalhes-div").appendChild(imagem)
 
     const detalhes = document.createElement("p");
     detalhes.innerHTML = dados.detalhes;
-    body.appendChild(detalhes);
+    document.getElementById("informacoes-div").appendChild(detalhes)
+
+    const informacoes = document.createElement("p");
+    informacoes.id = "informacoes"
+    informacoes.innerHTML = `No botafogo desde: ${dados.no_botafogo_desde}
+    <br> Número de jogos: ${dados.n_jogos} <br> Posição: ${dados.posicao} <br> Altura: ${dados.altura} 
+    <br> Nascimento: ${dados.nascimento} <br> Naturalidade: ${dados.naturalidade} `;
+    document.getElementById("informacoes-div").appendChild(informacoes)
+
+    const divbotao = document.createElement("div")
+    divbotao.id = "botao-div"
+    body.appendChild(divbotao)
+
+    const botao = document.createElement("button");
+    botao.id = "botao"
+    botao.innerHTML = "Voltar"
+    document.getElementById("botao-div").appendChild(botao)
+
+    botao.onclick = () => {
+        history.back()
+    }
+
 }
 
 if(sessionStorage.getItem('logado')) {

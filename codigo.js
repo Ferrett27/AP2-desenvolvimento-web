@@ -31,20 +31,34 @@ const montaLogin = () => {
     const body = document.body;
     body.innerHTML = ""
 
-    const grid = document.createElement("div")
-    grid.id = "grid-login"
-    body.appendChild(grid)
+    const article = document.createElement("article")
+    article.id = "article-login"
+    body.appendChild(article)
 
+    const img = document.createElement("img")
+    img.id ="escudo"
+    img.src = "escudo.png"
+    document.getElementById("article-login").appendChild(img)
+
+    const titulo = document.createElement("h1")
+    titulo.id = "login-texto"
+    titulo.innerHTML = "Elenco botafogo 2024/1"
+    document.getElementById("article-login").appendChild(titulo)
+    
     const caixa = document.createElement("input")
     caixa.setAttribute("type", "password")
+    caixa.setAttribute("placeholder", "Informe a senha...")
     caixa.id = "senha"
-    caixa.value = "libertadores"
-    document.getElementById("grid-login").appendChild(caixa)
+    document.getElementById("article-login").appendChild(caixa)
+
+    const dica = document.createElement("p")
+    dica.innerHTML = "Senha: Libertadores"
+    document.getElementById("article-login").appendChild(dica)
 
     const botao = document.createElement("button")
-    botao.innerHTML = "tentar"
+    botao.innerHTML = "Tentar"
     botao.id = "botao"
-    document.getElementById("grid-login").appendChild(botao)
+    document.getElementById("article-login").appendChild(botao)
 
     botao.addEventListener("click", e => {
         const senha = document.getElementById("senha").value
@@ -259,7 +273,7 @@ const jogadoresAtual = (e) => {
 }
 
 const manipulaBotao = (e) => {  
-    if (hex_sha256(e) === 'ee9a289648199d7f8327e2f519f0d8f12471054935c259559a0cf0091fb79da8'){
+    if (hex_sha256(e) === 'ef9ef6feb1a7173b179a73722b693fa715fed5393d91335d390fb8a2e94485dc'){
         sessionStorage.setItem('logado', 'sim');
         montaHome()
     } else {
