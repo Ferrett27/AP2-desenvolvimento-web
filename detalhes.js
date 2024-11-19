@@ -8,7 +8,7 @@ const pega_json = async (caminho) => {
         const dados = await resposta.json(); 
         return dados;
     } catch (error){
-        alert('Ocorreu um erro')
+        alert('Ocorreu um erro');
     }
 }
 
@@ -47,7 +47,7 @@ const montaPagina = (dados) => {
     <br> Nascimento: ${dados.nascimento} <br> Naturalidade: ${dados.naturalidade} `;
     document.getElementById("informacoes-div").appendChild(informacoes)
 
-    const divbotao = document.createElement("div")
+    const divbotao = document.createElement("div");
     divbotao.id = "botao-div"
     body.appendChild(divbotao)
 
@@ -67,7 +67,7 @@ if(sessionStorage.getItem('logado')) {
     (r) => montaPagina(r)
 );
 } else {
-    document.body.innerHTML = "<h1>Você precisa estar logado</h1> <br> <button id='botao'>Voltar</button>"
+    document.body.innerHTML = "<h1>Você precisa estar logado</h1> <br> <button id='botao'>Voltar</button>";
     document.getElementById("botao").onclick = () => {
         window.location = "index.html"
     }

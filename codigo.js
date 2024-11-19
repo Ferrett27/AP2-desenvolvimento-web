@@ -8,7 +8,7 @@ const pega_json = async (caminho) => {
         const dados = await resposta.json(); 
         return dados;
     } catch (error){
-        alert('Ocorreu um erro')
+        alert('Ocorreu um erro');
     }
 }
 
@@ -29,26 +29,26 @@ const manipulaClick = (e) => {
 
 const montaLogin = () => {
     const body = document.body;
-    body.innerHTML = ""
+    body.innerHTML = "";
 
-    const article = document.createElement("article")
+    const article = document.createElement("article");
     article.id = "article-login"
     body.appendChild(article)
 
-    const div1 = document.createElement("div")
+    const div1 = document.createElement("div");
     div1.id = "div-img"
     document.getElementById("article-login").appendChild(div1)
-    const img = document.createElement("img")
+    const img = document.createElement("img");
     img.id ="escudo"
     img.src = "escudo.png"
     document.getElementById("div-img").appendChild(img)
 
-    const titulo = document.createElement("h1")
+    const titulo = document.createElement("h1");
     titulo.id = "login-texto"
     titulo.innerHTML = "Elenco botafogo 2024/1"
     document.getElementById("div-img").appendChild(titulo)
 
-    const div2 = document.createElement("div")
+    const div2 = document.createElement("div");
     div2.id = "div-input"
     document.getElementById("article-login").appendChild(div2)
     const caixa = document.createElement("input")
@@ -57,16 +57,16 @@ const montaLogin = () => {
     caixa.id = "senha"
     document.getElementById("div-input").appendChild(caixa)
 
-    const br = document.createElement("br")
+    const br = document.createElement("br");
     br.id = "pular"
     document.getElementById("div-input").appendChild(br)
 
-    const botao = document.createElement("button")
+    const botao = document.createElement("button");
     botao.innerHTML = "Tentar"
     botao.id = "botao"
     document.getElementById("div-input").appendChild(botao)
 
-    const dica = document.createElement("p")
+    const dica = document.createElement("p");
     dica.innerHTML = "Senha: Libertadores"
     document.getElementById("div-input").appendChild(dica)
 
@@ -103,23 +103,23 @@ const montaHome = () => {
     selecao.id = "selecao";
     document.getElementById("div-selecao").appendChild(selecao)
 
-    const opc1 = document.createElement("option")
+    const opc1 = document.createElement("option");
     opc1.disabled = true
     opc1.setAttribute("selected", "true")
     opc1.innerHTML = "Escolha o elenco"
     document.getElementById("selecao").appendChild(opc1);
 
-    const opcm = document.createElement("option")
+    const opcm = document.createElement("option");
     opcm.value = "masculino"
     opcm.innerHTML = "Masculino"
     document.getElementById("selecao").appendChild(opcm);
 
-    const opcf = document.createElement("option")
+    const opcf = document.createElement("option");
     opcf.value = "feminino"
     opcf.innerHTML = "Feminino"
     document.getElementById("selecao").appendChild(opcf);
 
-    const opct = document.createElement("option")
+    const opct = document.createElement("option");
     opct.value = "all"
     opct.innerHTML = "Todos"
     document.getElementById("selecao").appendChild(opct);
@@ -129,32 +129,32 @@ const montaHome = () => {
     opcoes.id = "grid-opcoes";
     body.appendChild(opcoes)
 
-    const botaom = document.createElement("button")
+    const botaom = document.createElement("button");
     botaom.innerHTML = "Masculino"
     botaom.id = "masculino"
     document.getElementById("grid-opcoes").appendChild(botaom)
 
-    const botaof = document.createElement("button")
+    const botaof = document.createElement("button");
     botaof.innerHTML = "Feminino"
     botaof.id = "feminino"
     document.getElementById("grid-opcoes").appendChild(botaof)
 
-    const botaot = document.createElement("button")
+    const botaot = document.createElement("button");
     botaot.innerHTML = "Todos"
     botaot.id = "todos"
     document.getElementById("grid-opcoes").appendChild(botaot)
 
-    const divfiltro = document.createElement("div")
+    const divfiltro = document.createElement("div");
     divfiltro.id = "div-filtro"
     body.appendChild(divfiltro)
 
-    const filtro =  document.createElement("input")
-    filtro.setAttribute("type", "text")
-    filtro.setAttribute("placeholder", "Pesquisar atleta...")
+    const filtro =  document.createElement("input");
+    filtro.setAttribute("type", "text");
+    filtro.setAttribute("placeholder", "Pesquisar atleta...");
     filtro.id = "caixa-texto"
     document.getElementById("div-filtro").appendChild(filtro)
 
-    const container = document.createElement("div")
+    const container = document.createElement("div");
     container.id = "container"
     body.appendChild(container)
 
@@ -183,21 +183,21 @@ const montaHome = () => {
 
     logout.onclick = () => {
         sessionStorage.removeItem('logado');
-        zeracard(container)
-        jogadores = []
-        montaLogin()
+        zeracard(container);
+        jogadores = [];
+        montaLogin();
     };
 
     selecao.onchange = function () {
         const selecaovalor = document.getElementById("selecao").value
         if (selecaovalor == "masculino"){
-            manipulaJogadoresMasc(container)
+            manipulaJogadoresMasc(container);
         }
         if (selecaovalor == "feminino"){
-            manipulaJogadoresFemi(container)
+            manipulaJogadoresFemi(container);
         }
         if (selecaovalor == "all"){
-            manipulaJogadoresTodos(container)
+            manipulaJogadoresTodos(container);
         }
     };
 }
