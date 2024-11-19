@@ -67,7 +67,10 @@ if(sessionStorage.getItem('logado')) {
     (r) => montaPagina(r)
 );
 } else {
-    document.body.innerHTML = "<h1>Você precisa estar logado</h1>"
+    document.body.innerHTML = "<h1>Você precisa estar logado</h1> <br> <button id='botao'>Voltar</button>"
+    document.getElementById("botao").onclick = () => {
+        window.location = "index.html"
+    }
 } 
 
 const achaCookie = ( chave ) => {
