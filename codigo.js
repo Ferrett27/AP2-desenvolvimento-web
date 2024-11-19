@@ -35,30 +35,40 @@ const montaLogin = () => {
     article.id = "article-login"
     body.appendChild(article)
 
+    const div1 = document.createElement("div")
+    div1.id = "div-img"
+    document.getElementById("article-login").appendChild(div1)
     const img = document.createElement("img")
     img.id ="escudo"
     img.src = "escudo.png"
-    document.getElementById("article-login").appendChild(img)
+    document.getElementById("div-img").appendChild(img)
 
     const titulo = document.createElement("h1")
     titulo.id = "login-texto"
     titulo.innerHTML = "Elenco botafogo 2024/1"
-    document.getElementById("article-login").appendChild(titulo)
-    
+    document.getElementById("div-img").appendChild(titulo)
+
+    const div2 = document.createElement("div")
+    div2.id = "div-input"
+    document.getElementById("article-login").appendChild(div2)
     const caixa = document.createElement("input")
     caixa.setAttribute("type", "password")
     caixa.setAttribute("placeholder", "Informe a senha...")
     caixa.id = "senha"
-    document.getElementById("article-login").appendChild(caixa)
+    document.getElementById("div-input").appendChild(caixa)
 
-    const dica = document.createElement("p")
-    dica.innerHTML = "Senha: Libertadores"
-    document.getElementById("article-login").appendChild(dica)
+    const br = document.createElement("br")
+    br.id = "pular"
+    document.getElementById("div-input").appendChild(br)
 
     const botao = document.createElement("button")
     botao.innerHTML = "Tentar"
     botao.id = "botao"
-    document.getElementById("article-login").appendChild(botao)
+    document.getElementById("div-input").appendChild(botao)
+
+    const dica = document.createElement("p")
+    dica.innerHTML = "Senha: Libertadores"
+    document.getElementById("div-input").appendChild(dica)
 
     botao.addEventListener("click", e => {
         const senha = document.getElementById("senha").value

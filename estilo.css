@@ -14,6 +14,7 @@ html{
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 1em;
 }
 
@@ -38,9 +39,11 @@ html{
 
 #article-login button{
     font-family: Josefin Sans;
-    font-size: 1.3rem;
-    width: 6em;
-    height: 1.9em;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    font-size: 1rem;
+    width: 7em;
+    height: 2.5em;
     background-color: white;
     border: solid black 2px;
     cursor: pointer;
@@ -50,6 +53,10 @@ html{
     color: white;
     background-color: black;
     border-color: white;
+}
+
+#pular {
+    display: block;
 }
 
 #container {
@@ -141,10 +148,6 @@ html{
     width: 13em;
 }
 
-#grid-opcoes{
-    display: none;
-}
-
 #caixa-texto{
     font-family: Josefin Sans;
     border: solid black 2px;
@@ -161,6 +164,25 @@ html{
 }
 
 @media screen and (min-width: 768px) {
+
+    #article-login{
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #pular{
+        display: none;
+    }
+
+    #div-img{
+        text-align: center;
+    }
+
+    #div-input{
+        margin-left: 10%;
+        text-align: center;
+        align-self: flex-end;
+    }
 
     #container {
         grid-template-columns: auto auto auto;
