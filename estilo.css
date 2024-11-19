@@ -148,6 +148,10 @@ html{
     width: 13em;
 }
 
+#grid-opcoes{
+    display: none;
+}
+
 #caixa-texto{
     font-family: Josefin Sans;
     border: solid black 2px;
