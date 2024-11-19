@@ -20,6 +20,9 @@ const montaPagina = (dados) => {
     imagem.src = dados.imagem
     body.appendChild(imagem);
 
+    const detalhes = document.createElement("p");
+    detalhes.innerHTML = dados.detalhes;
+    body.appendChild(detalhes);
 }
 
 if(sessionStorage.getItem('logado')) {
