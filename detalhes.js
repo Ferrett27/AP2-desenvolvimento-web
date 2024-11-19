@@ -3,9 +3,13 @@ const params = new URLSearchParams(window.location.search)
 const id = params.get("id");
 
 const pega_json = async (caminho) => {
-    const resposta = await fetch(caminho);
-    const dados = await resposta.json();
-    return dados;
+    try {
+        const resposta = await fetch(caminho);
+        const dados = await resposta.json(); 
+        return dados;
+    } catch (error){
+        alert('Ocorreu um erro')
+    }
 }
 
 const montaPagina = (dados) => {

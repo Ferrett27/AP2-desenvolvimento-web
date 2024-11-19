@@ -4,9 +4,9 @@ let jogadores = []
 
 const pega_json = async (caminho) => {
     try {
-    const resposta = await fetch(caminho);
-    const dados = await resposta.json(); 
-    return dados;
+        const resposta = await fetch(caminho);
+        const dados = await resposta.json(); 
+        return dados;
     } catch (error){
         alert('Ocorreu um erro')
     }
