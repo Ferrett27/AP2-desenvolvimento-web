@@ -3,26 +3,14 @@ const url = "https://botafogo-atletas.mange.li/2024-1/";
 let jogadores = []
 
 const pega_json = async (caminho) => {
+    try {
     const resposta = await fetch(caminho);
     const dados = await resposta.json(); 
     return dados;
+    } catch (error){
+        alert('Ocorreu um erro')
+    }
 }
-
-document.getElementById('home').style.visibility = 'hidden';
-
-const container = document.getElementById("container");
-const pesquisaInput = document.getElementById('caixa-texto')
-
-pesquisaInput.addEventListener("input", (e) => {
-    const valorInput = e.target.value.toLowerCase();
-    const atletasfiltrados = jogadores.filter((atleta) => {
-        return (
-            atleta.nome.toLowerCase().includes(valorInput)
-        );
-    });
-    zeracard();
-    atletasfiltrados.forEach((ele) => container.appendChild(montaCard(ele)));
-});
 
 
 const manipulaClick = (e) => {
@@ -39,22 +27,172 @@ const manipulaClick = (e) => {
     window.location = url;
 }
 
+const montaLogin = () => {
+    const body = document.body;
+    body.innerHTML = ""
+
+    const grid = document.createElement("div")
+    grid.id = "grid-login"
+    body.appendChild(grid)
+
+    const caixa = document.createElement("input")
+    caixa.setAttribute("type", "password")
+    caixa.id = "senha"
+    caixa.value = "libertadores"
+    document.getElementById("grid-login").appendChild(caixa)
+
+    const botao = document.createElement("button")
+    botao.innerHTML = "tentar"
+    botao.id = "botao"
+    document.getElementById("grid-login").appendChild(botao)
+
+    botao.addEventListener("click", e => {
+        const senha = document.getElementById("senha").value
+        manipulaBotao(senha)
+    })
+
+}
+
+const montaHome = () => {
+    const body = document.body;
+    body.innerHTML = '';
+
+    const header = document.createElement("header");
+    header.id = "header";
+    body.appendChild(header);
+
+    const titulo = document.createElement("h1");
+    titulo.id = "titulo";
+    titulo.innerHTML = "Elenco Botafogo 2024/1";
+    document.getElementById("header").appendChild(titulo);
+
+    const logout = document.createElement("button");
+    logout.id = "logout";
+    logout.innerHTML = "logout";
+    document.getElementById("header").appendChild(logout);
+
+    const divsele = document.createElement("div");
+    divsele.id = "div-selecao"
+    body.appendChild(divsele);
+
+    const selecao = document.createElement("select");
+    selecao.id = "selecao";
+    document.getElementById("div-selecao").appendChild(selecao)
+
+    const opc1 = document.createElement("option")
+    opc1.disabled = true
+    opc1.setAttribute("selected", "true")
+    opc1.innerHTML = "Escolha o elenco"
+    document.getElementById("selecao").appendChild(opc1);
+
+    const opcm = document.createElement("option")
+    opcm.value = "masculino"
+    opcm.innerHTML = "Masculino"
+    document.getElementById("selecao").appendChild(opcm);
+
+    const opcf = document.createElement("option")
+    opcf.value = "feminino"
+    opcf.innerHTML = "Feminino"
+    document.getElementById("selecao").appendChild(opcf);
+
+    const opct = document.createElement("option")
+    opct.value = "all"
+    opct.innerHTML = "Todos"
+    document.getElementById("selecao").appendChild(opct);
+
+
+    const opcoes = document.createElement("div");
+    opcoes.id = "grid-opcoes";
+    body.appendChild(opcoes)
+
+    const botaom = document.createElement("button")
+    botaom.innerHTML = "Masculino"
+    botaom.id = "masculino"
+    document.getElementById("grid-opcoes").appendChild(botaom)
+
+    const botaof = document.createElement("button")
+    botaof.innerHTML = "Feminino"
+    botaof.id = "feminino"
+    document.getElementById("grid-opcoes").appendChild(botaof)
+
+    const botaot = document.createElement("button")
+    botaot.innerHTML = "Todos"
+    botaot.id = "todos"
+    document.getElementById("grid-opcoes").appendChild(botaot)
+
+    const divfiltro = document.createElement("div")
+    divfiltro.id = "div-filtro"
+    body.appendChild(divfiltro)
+
+    const filtro =  document.createElement("input")
+    filtro.setAttribute("type", "text")
+    filtro.setAttribute("placeholder", "Pesquisar atleta...")
+    filtro.id = "caixa-texto"
+    document.getElementById("div-filtro").appendChild(filtro)
+
+    const container = document.createElement("div")
+    container.id = "container"
+    body.appendChild(container)
+
+    botaom.addEventListener("click", e =>{
+        manipulaJogadoresMasc(container)
+    });
+
+    botaof.addEventListener("click", e =>{
+        manipulaJogadoresFemi(container)
+    });
+
+    botaot.addEventListener("click", e =>{
+        manipulaJogadoresTodos(container)
+    });
+
+    filtro.addEventListener("input", (e) => {
+        const valorInput = e.target.value.toLowerCase();
+        const atletasfiltrados = jogadores.filter((atleta) => {
+            return (
+                atleta.nome.toLowerCase().includes(valorInput)
+            );
+        });
+        zeracard(container);
+        atletasfiltrados.forEach((ele) => container.appendChild(montaCard(ele)));
+    });
+
+    logout.onclick = () => {
+        sessionStorage.removeItem('logado');
+        zeracard(container)
+        jogadores = []
+        montaLogin()
+    };
+
+    selecao.onchange = function () {
+        const selecaovalor = document.getElementById("selecao").value
+        if (selecaovalor == "masculino"){
+            manipulaJogadoresMasc(container)
+        }
+        if (selecaovalor == "feminino"){
+            manipulaJogadoresFemi(container)
+        }
+        if (selecaovalor == "all"){
+            manipulaJogadoresTodos(container)
+        }
+    };
+}
+
 const montaCard = (atleta) => {
     const cartao = document.createElement("article");
     const nome = document.createElement("h1");
     const imagem = document.createElement("img");
-    const descri = document.createElement("p");
+    const saiba = document.createElement("h2");
     
 
     nome.innerHTML = atleta.nome;
-    nome.style.fontFamily = "sains-serif";
     cartao.appendChild(nome);
 
     imagem.src = atleta.imagem;
     cartao.appendChild(imagem);
 
-    descri.innerHTML = atleta.detalhes;
-    cartao.appendChild(descri);
+    saiba.innerHTML = "Saiba mais";
+    cartao.appendChild(saiba)
 
     cartao.onclick = manipulaClick;
 
@@ -66,15 +204,14 @@ const montaCard = (atleta) => {
     return cartao
 };
 
-const manipulaJogadoresMasc = () => {
+const manipulaJogadoresMasc = (e) => {
     if(sessionStorage.getItem('logado')) {
         const m = "masculino"
-        zeracard()
+        zeracard(e)
         jogadores = jogadoresAtual(m)
-        console.log(jogadores)
         pega_json(`${url}${m}`).then( 
         (r) => {
-            r.forEach((ele) => container.appendChild(montaCard(ele)) 
+            r.forEach((ele) => e.appendChild(montaCard(ele)) 
             )
         } 
     )
@@ -83,15 +220,14 @@ const manipulaJogadoresMasc = () => {
     } 
 }
 
-const manipulaJogadoresFemi = () => {
+const manipulaJogadoresFemi = (e) => {
     if(sessionStorage.getItem('logado')) {
         const f = "feminino"
-        zeracard()
+        zeracard(e)
         jogadores = jogadoresAtual(f)
-        console.log(jogadores)
         pega_json(`${url}${f}`).then( 
         (r) => {
-            r.forEach((ele) => container.appendChild(montaCard(ele))
+            r.forEach((ele) => e.appendChild(montaCard(ele))
             )
         }
     )
@@ -100,15 +236,14 @@ const manipulaJogadoresFemi = () => {
     } 
 }
 
-const manipulaJogadoresTodos = () => {
+const manipulaJogadoresTodos = (e) => {
     if(sessionStorage.getItem('logado')) {
         const t = "all"
-        zeracard()
+        zeracard(e)
         jogadores = jogadoresAtual(t)
-        console.log(jogadores)
         pega_json(`${url}${t}`).then( 
         (r) => {
-            r.forEach((ele) => container.appendChild(montaCard(ele))
+            r.forEach((ele) => e.appendChild(montaCard(ele))
             )
         }
     )
@@ -123,31 +258,23 @@ const jogadoresAtual = (e) => {
     return jogadores
 }
 
-const manipulaBotao = () => {
-    const texto = document.getElementById('senha').value;
-    if (hex_sha256(texto) === 'ee9a289648199d7f8327e2f519f0d8f12471054935c259559a0cf0091fb79da8'){
+const manipulaBotao = (e) => {  
+    if (hex_sha256(e) === 'ee9a289648199d7f8327e2f519f0d8f12471054935c259559a0cf0091fb79da8'){
         sessionStorage.setItem('logado', 'sim');
-        document.getElementById('tela-login').style.visibility = 'hidden';
-        document.getElementById('home').style.visibility = "visible";
-         
+        montaHome()
     } else {
         alert('Senha incorreta')
     }
 }
 
-const zeracard = () => {
-    container.innerHTML= ""
+const zeracard = (e) => {
+    e.innerHTML= ""
 }
 
-document.getElementById('botao').onclick = manipulaBotao;
-
-document.getElementById('masculino').onclick = manipulaJogadoresMasc;
-document.getElementById('feminino').onclick = manipulaJogadoresFemi;
-document.getElementById('todos').onclick = manipulaJogadoresTodos;
-
-document.getElementById('logout').onclick = () => {
-    sessionStorage.removeItem('logado');
-    zeracard()
-    document.getElementById('tela-login').style.visibility = "visible";
-    document.getElementById('home').style.visibility = 'hidden';
+window.onload = () =>{
+    if(sessionStorage.getItem('logado')) {
+        montaHome()
+    } else {
+        montaLogin()
+    }
 }

@@ -1,92 +1,162 @@
+html{
+    background-color: #36454F;
+    font-family: Josefin Sans;
+}
+
 #container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 1em;
+    grid-template-columns: auto;
+    margin: auto;
+    max-width: 1400px;
 }
 
 #container > article{
-    width: 20rem;
-    border: solid rebeccapurple 1px;
-    border-radius: 5px;
-    margin: .2rem;
-    padding: .3rem;
+    background-color: white;
+    border: solid black 5px;
+    border-radius: 2px;
+    margin: auto;
+    padding: .5rem;
+    cursor: pointer;
+    width: min-content;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#titulo {
+    font-size: 1.6rem;
+}
+
+#container h1{
+    height: 6rem;
+    align-content: center;
 }
 
 #container img{
-    width: 100%;
+    width: 220px;
+    height: 400px;
+    object-position: 100% 15%;
+    object-fit: none;
 }
 
-#home, #tela-login {
-    position: absolute;
-    top: 1%;
-    width: 100%;
-    height: 100%;
+#container > article:hover{
+    background-color: black;
+    color: white;
+    border-color: white;
 }
 
-#grid-topo{
-    display: grid;
-    grid-template-areas: 
-    "a b"
-    ;
-    margin-bottom: 2%;
+#header{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-bottom: 1.5em;
 }
 
-#home-topo{
-    grid-area: a;
+#titulo{
+    flex-grow: 1;
+    margin-left: 0.5em;
 }
 
 
 #logout{
-    grid-area: b;
+    font-family: Josefin Sans;
     color: white;
     background-color: black;
-    width: 40%;
-    height: 50%;
-    position: relative;
+    height: 3em;
+    width: 5em;
     align-self: center;
-    margin-left: 60%;
+    margin-right: 0.5em;
+    cursor: pointer;
+}
+
+#div-selecao{
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+
+#selecao{
+    font-family: Josefin Sans;
+    font-size: 1rem;
+    text-align: center;
+    height: 4em;
+    width: 13em;
 }
 
 #grid-opcoes{
-    display: grid;
-    grid-template-areas: 
-    "c d e"
-    ;
-    margin-bottom: 2%;
-}
-
-#masculino{
-    position: relative;
-    grid-area: c;
-    width: 50%;
-    height: 200%;
-    color: white;
-    background-color: black;
-    align-self: center;
-    margin-left: 25%;
-}
-
-#feminino{
-    position: relative;
-    grid-area: d;
-    width: 50%;
-    height: 200%;
-    color: white;
-    background-color: black;
-    align-self: center;
-    margin-left: 25%;
-}
-
-#todos{
-    position: relative;
-    grid-area: e;
-    width: 50%;
-    height: 200%;
-    color: white;
-    background-color: black;
-    align-self: center;
-    margin-left: 25%;
-}
-
-.esconder {
     display: none;
+}
+
+#caixa-texto{
+    font-family: Josefin Sans;
+    border: solid black 2px;
+    text-align: center;
+    font-size: 1.5rem;
+    width: 16em;
+    height: 2em;
+    max-width: 80%;
+    margin-bottom: 2em;
+}
+
+#div-filtro{
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+
+    #container {
+        grid-template-columns: auto auto auto;
+    }
+
+    #selecao{
+        display: none;
+    }
+
+    #grid-opcoes{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2em;
+        justify-content: center;
+        gap: 5em;
+    }
+
+    #masculino, #feminino, #todos{
+        font-family: Josefin Sans;
+        position: relative;
+        font-size: 1.2rem;
+        width: 9.5em;
+        height: 3.5em;
+        color: black;
+        background-color: white;
+        border: solid black 3px;
+        max-width: 100%;
+        cursor: pointer;
+        
+    }
+
+    #masculino:hover, #feminino:hover, #todos:hover{
+        color: white;
+        background-color: black;
+        border-color: white;
+    }
+
+}
+
+@media screen and (min-width: 1024px){
+    #container {
+        grid-template-columns: auto auto auto auto;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    #container {
+        grid-template-columns: auto auto auto auto auto;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    #container {
+        grid-template-columns: auto auto auto auto auto;
+    }
 }
