@@ -36,16 +36,16 @@ const montaPagina = (dados) => {
     imagem.src = dados.imagem
     document.getElementById("detalhes-div").appendChild(imagem)
 
-    const detalhes = document.createElement("p");
-    detalhes.innerHTML = dados.detalhes;
-    document.getElementById("informacoes-div").appendChild(detalhes)
-
     const informacoes = document.createElement("p");
     informacoes.id = "informacoes"
     informacoes.innerHTML = `No botafogo desde: ${dados.no_botafogo_desde}
     <br> Número de jogos: ${dados.n_jogos} <br> Posição: ${dados.posicao} <br> Altura: ${dados.altura} 
     <br> Nascimento: ${dados.nascimento} <br> Naturalidade: ${dados.naturalidade} `;
     document.getElementById("informacoes-div").appendChild(informacoes)
+
+    const detalhes = document.createElement("p");
+    detalhes.innerHTML = dados.detalhes;
+    document.getElementById("informacoes-div").appendChild(detalhes)
 
     const divbotao = document.createElement("div");
     divbotao.id = "botao-div"

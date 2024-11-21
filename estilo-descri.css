@@ -11,7 +11,7 @@ html{
     right:0;
     width: 100%;
     height: 100%;
-    font-size: 3rem;
+    font-size: 1.3rem;
     text-align: center;
 }
 
@@ -71,5 +71,16 @@ html{
 
     #detalhes-div h1{
         font-size: 1.8rem;
+    }
+
+    #load{
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        width: 100%;
+        height: 100%;
+        font-size: 3rem;
+        text-align: center;
     }
 }
