@@ -90,7 +90,7 @@ html{
 
 #container img{
     width: 220px;
-    height: 400px;
+    height: 500px;
     object-position: 100% 15%;
     object-fit: none;
 }
@@ -154,13 +154,19 @@ html{
 
 #caixa-texto{
     font-family: Josefin Sans;
-    border: solid black 2px;
+    border: solid black 3px;
     text-align: center;
     font-size: 1.5rem;
     width: 16em;
     height: 2em;
     max-width: 80%;
     margin-bottom: 2em;
+}
+
+#caixa-texto:focus{
+    background-color: black;
+    color: white;
+    border-color: white;
 }
 
 #div-filtro{
