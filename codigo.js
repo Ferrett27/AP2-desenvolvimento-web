@@ -40,7 +40,7 @@ const montaLogin = () => {
     document.getElementById("article-login").appendChild(div1)
     const img = document.createElement("img");
     img.id ="escudo"
-    img.src = "escudo.png"
+    img.src = "escudo-botafogo.png"
     document.getElementById("div-img").appendChild(img)
 
     const titulo = document.createElement("h1");
