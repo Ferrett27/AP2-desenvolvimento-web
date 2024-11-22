@@ -38,9 +38,9 @@ const montaPagina = (dados) => {
 
     const informacoes = document.createElement("p");
     informacoes.id = "informacoes"
-    informacoes.innerHTML = `No botafogo desde: ${dados.no_botafogo_desde}
-    <br> Número de jogos: ${dados.n_jogos} <br> Posição: ${dados.posicao}
-    <br> Nascimento: ${dados.nascimento} <br> Naturalidade: ${dados.naturalidade} `;
+    informacoes.innerHTML = `Posição: ${dados.posicao}
+    <br> No botafogo desde: ${dados.no_botafogo_desde}
+    <br> Número de jogos: ${dados.n_jogos} <br> Nascimento: ${dados.nascimento} <br> Naturalidade: ${dados.naturalidade} `;
     document.getElementById("informacoes-div").appendChild(informacoes)
 
     const detalhes = document.createElement("p");

@@ -61,7 +61,7 @@ html{
 
 #container {
     display: grid;
-    gap: 1em;
+    gap: .8em;
     grid-template-columns: auto;
     margin: auto;
     max-width: 1400px;
@@ -70,13 +70,11 @@ html{
 #container > article{
     background-color: white;
     border: solid black 5px;
-    border-radius: 2px;
     margin: auto;
     padding: .5rem;
     cursor: pointer;
     width: min-content;
     text-align: center;
-    margin-top: 2rem;
 }
 
 #titulo {
@@ -90,8 +88,8 @@ html{
 
 #container img{
     width: 220px;
-    height: 500px;
-    object-position: 100% 15%;
+    height: 487px;
+    object-position: 100%;
     object-fit: none;
 }
 
@@ -146,6 +144,7 @@ html{
     text-align: center;
     height: 4em;
     width: 13em;
+    border: solid black 3px;
 }
 
 #grid-opcoes{
@@ -163,7 +162,7 @@ html{
     margin-bottom: 2em;
 }
 
-#caixa-texto:focus{
+#caixa-texto:focus, #selecao:focus{
     background-color: black;
     color: white;
     border-color: white;
